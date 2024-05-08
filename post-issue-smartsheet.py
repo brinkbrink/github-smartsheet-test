@@ -40,26 +40,26 @@ smartsheet_response = requests.post(
             'name': 'Jane Doe'
         },
         'cells': [
-        {
-        'columnId': 5558737690382212,
-        'displayValue': 'test1',
-        'value': issues['title']
-        },
-        {
-        'columnId': 3306937876696964,
-        'displayValue': 'test1',
-        'value': 'IS THIS'
-        },
-        {
-        'columnId': 7810537504067460,
-        'displayValue': 'test1',
-        'value': 'working for'
-        },
-        {
-        'columnId': 2181037969854340,
-        'displayValue': 'test1',
-        'value': '??'
-        }
+            {
+            'columnId': 5558737690382212,
+            'displayValue': 'test1',
+            'value': issues['title']
+            },
+            {
+            'columnId': 3306937876696964,
+            'displayValue': 'test1',
+            'value': 'IS THIS'
+            },
+            {
+            'columnId': 7810537504067460,
+            'displayValue': 'test1',
+            'value': 'working for'
+            },
+            {
+            'columnId': 2181037969854340,
+            'displayValue': 'test1',
+            'value': '??'
+            }
         ],
         'modifiedAt': '2019-08-24T14:15:22Z',
         'modifiedBy': {
