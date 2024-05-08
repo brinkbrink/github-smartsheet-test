@@ -1,4 +1,4 @@
-# import requests
+import requests
 import smartsheet
 import logging
 import os
@@ -13,12 +13,12 @@ smart.errors_as_exceptions(True)
 logging.basicConfig(filename='rwsheet.log', level=logging.INFO)
 
 # GET request to GitHub API
-response = requests.get('https://api.github.com/repos/{owner}/{repo}/issues')
+response = requests.get('https://api.github.com/repos/brinkbrink/github-smartsheet-test/issues')
 issues = response.json()
 
 # POST request to Smartsheet API
 smartsheet_response = requests.post(
-    'https://api.smartsheet.com/2.0/sheets/{sheet_id}/rows',
+    'https://api.smartsheet.com/2.0/sheets/2342839996338052/rows',
     headers={'Authorization': 'Bearer YOUR_ACCESS_TOKEN', 'Content-Type': 'application/json'},
-    json={'rows': [{'cells': [{'columnId': your_column_id, 'value': issue['title']}]}]}
+    json={'rows': [{'cells': [{'columnId': 5558737690382212, 'value': requests.title}]}]}
 )
