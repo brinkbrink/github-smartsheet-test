@@ -26,9 +26,8 @@ response = requests.get('https://api.github.com/repos/brinkbrink/github-smartshe
                                  'X-GitHub-Api-Version': '2022-11-28'})
 issues = response.json()
 
+# for use below--in order to truncate url to use as repo name
 repo_url = issues['repository_url']
-print(repo_url)
-print(repo_url[40:])
 
 # POST request to Smartsheet API
 smartsheet_response = requests.post(
@@ -37,10 +36,8 @@ smartsheet_response = requests.post(
     json={
         'sheetId': 2342839996338052,
         'accessLevel': 'OWNER',
-        'createdAt': '2019-08-24T14:15:22Z',
         'createdBy': {
-            'email': 'jane.doe@smartsheet.com',
-            'name': 'Jane Doe'
+            'name': 'automation'
         },
         'cells': [
             {
@@ -68,10 +65,5 @@ smartsheet_response = requests.post(
             'displayValue': 'index',
             'value': issues['number']
             }
-        ],
-        'modifiedAt': '2019-08-24T14:15:22Z',
-        'modifiedBy': {
-            'email': 'jane.doe@smartsheet.com',
-            'name': 'Jane Doe'
-        }
+        ]
         })
