@@ -1,4 +1,16 @@
-import requests
+# import requests
+import smartsheet
+import logging
+import os
+
+
+# Initialize client. Uses the API token in the environment variable "SMARTSHEET_ACCESS_TOKEN"
+smart = smartsheet.Smartsheet()
+# Make sure we don't miss any error
+smart.errors_as_exceptions(True)
+
+# Log all calls
+logging.basicConfig(filename='rwsheet.log', level=logging.INFO)
 
 # GET request to GitHub API
 response = requests.get('https://api.github.com/repos/{owner}/{repo}/issues')
