@@ -1,7 +1,7 @@
 import requests
 import smartsheet
 import logging
-import os
+#import os
 
 
 # Initialize client. Uses the API token in the environment variable "SMARTSHEET_ACCESS_TOKEN"
@@ -13,7 +13,10 @@ smart.errors_as_exceptions(True)
 logging.basicConfig(filename='rwsheet.log', level=logging.INFO)
 
 # GET request to GitHub API
-response = requests.get('https://api.github.com/repos/brinkbrink/github-smartsheet-test/issues')
+response = requests.get('https://api.github.com/repos/brinkbrink/github-smartsheet-test/issues',
+                        headers={'Authorization': 'Bearer YOUR_ACCESS_TOKEN', 
+                                 'Content-Type': 'application/vnd.github+json',
+                                 'X-GitHub-Api-Version': '2022-11-28'})
 issues = response.json()
 
 # POST request to Smartsheet API
