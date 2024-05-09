@@ -19,7 +19,7 @@ smart.errors_as_exceptions(True)
 logging.basicConfig(filename='rwsheet.log', level=logging.INFO)
 
 # GET request to GitHub API
-response = requests.get('https://api.github.com/repos/brinkbrink/github-smartsheet-test/issues/4',
+response = requests.get('https://api.github.com/repos/brinkbrink/github-smartsheet-test/issues/13',
                         headers={'Authorization': GITHUB_ACCESS_TOKEN, 
                                  'Content-Type': 'application/vnd.github+json',
                                  'X-GitHub-Api-Version': '2022-11-28'})
@@ -54,11 +54,11 @@ smartsheet_response = requests.post(
             'displayValue': 'priority',
             'value': 'priority pull from PBI'
             },
-            # {
-            # 'columnId': 2181037969854340,
-            # 'displayValue': 'assignee',
-            # 'value': issues['assignee']['login']
-            # },
+            {
+            'columnId': 2181037969854340,
+            'displayValue': 'assignee',
+            'value': issues['assignee']['login']
+            },
             {
             'columnId': 6684637597224836,
             'displayValue': 'index',
