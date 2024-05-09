@@ -16,7 +16,7 @@ smart.errors_as_exceptions(True)
 logging.basicConfig(filename='rwsheet.log', level=logging.INFO)
 
 # GET request to GitHub API
-response = requests.get('https://api.github.com/repos/brinkbrink/github-smartsheet-test/issues/5',
+response = requests.get('https://api.github.com/repos/brinkbrink/github-smartsheet-test/issues/4',
                         headers={'Authorization': GITHUB_ACCESS_TOKEN, 
                                  'Content-Type': 'application/vnd.github+json',
                                  'X-GitHub-Api-Version': '2022-11-28'})
