@@ -54,11 +54,11 @@ smartsheet_response = requests.post(
             'displayValue': 'priority',
             'value': 'priority pull from PBI'
             },
-            {
-            'columnId': 2181037969854340,
-            'displayValue': 'assignee',
-            'value': issues['assignee']['login']
-            },
+            # {
+            # 'columnId': 2181037969854340,
+            # 'displayValue': 'assignee',
+            # 'value': issues['assignee']['login']
+            # },
             {
             'columnId': 6684637597224836,
             'displayValue': 'index',
