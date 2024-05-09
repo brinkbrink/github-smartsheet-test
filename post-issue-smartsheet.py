@@ -2,14 +2,10 @@ import requests
 import smartsheet
 import logging
 import os
-from dotenv import load_dotenv
 
-load_dotenv()
-
-SMARTSHEET_ACCESS_TOKEN = os.getenv('SMARTSHEET_ACCESS_TOKEN')
-os.environ['SMARTSHEET_ACCESS_TOKEN'] = SMARTSHEET_ACCESS_TOKEN
-JSON_ACCESS = os.getenv('JSON_SMARTSHEET_ACCESS_TOKEN')
-GITHUB_ACCESS_TOKEN = os.getenv('GITHUB_ACCESS_TOKEN')
+SMARTSHEET_ACCESS_TOKEN = os.environ('SMARTSHEET_ACCESS_TOKEN')
+JSON_ACCESS = os.environ('JSON_SMARTSHEET_ACCESS_TOKEN')
+GITHUB_ACCESS_TOKEN = os.environ('GH_ACCESS_TOKEN')
 
 # Initialize client. Uses the API token in the environment variable 'SMARTSHEET_ACCESS_TOKEN'
 smart = smartsheet.Smartsheet()
