@@ -3,7 +3,7 @@ import smartsheet
 import logging
 import os
 
-# TODO: I'm pretty sure this is a naming conflict issue
+# GH TOKEN IS DEF WORKING, WHAT IS GOING ON WITH SMARTSHEET?
 SMART_ACCESS_TOKEN = os.environ['SMART_ACCESS_TOKEN']
 os.environ['SMARTSHEET_ACCESS_TOKEN'] = SMART_ACCESS_TOKEN
 
@@ -57,7 +57,7 @@ smartsheet_response = requests.post(
             {
             'columnId': 2181037969854340,
             'displayValue': 'assignee',
-            'value': issues['assignee']['login']
+            'value': issues['assignee']['login'] # create logic in case this is empty
             },
             {
             'columnId': 6684637597224836,

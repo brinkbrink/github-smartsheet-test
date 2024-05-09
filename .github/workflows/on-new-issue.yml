@@ -16,7 +16,6 @@ jobs:
     steps: 
     - name: Checkout # checks out repository
       uses: actions/checkout@v4
-        #TODO: with:
 
     - name: Set up Python # sets up python for runner to prepare for script
       uses: actions/setup-python@v5
@@ -30,6 +29,6 @@ jobs:
         pip install smartsheet-python-sdk
         pip install python-dotenv
 
-    - name: Fetch Data and Write to File # runs script does the API call and writes to a file
+    - name: Fetch Data and Write to Sheet # runs script that makes API call and writes to a Smartsheet
       run: |
         python post-issue-smartsheet.py  
