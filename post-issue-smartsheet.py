@@ -4,10 +4,11 @@ import logging
 import os
 
 # TODO: I'm pretty sure this is a naming conflict issue
-SMARTSHEET_ACCESS_TOKEN = os.environ['SMART_ACCESS_TOKEN']
+SMART_ACCESS_TOKEN = os.environ['SMART_ACCESS_TOKEN']
+os.environ['SMARTSHEET_ACCESS_TOKEN'] = SMART_ACCESS_TOKEN
+
 JSON_ACCESS = os.environ['JSON_SMARTSHEET_ACCESS_TOKEN']
 GITHUB_ACCESS_TOKEN = os.environ['GH_ACCESS_TOKEN']
-os.environ['SMARTSHEET_ACCESS_TOKEN'] = SMARTSHEET_ACCESS_TOKEN
 
 # Initialize client. Uses the API token in the environment variable 'SMARTSHEET_ACCESS_TOKEN'
 smart = smartsheet.Smartsheet()
