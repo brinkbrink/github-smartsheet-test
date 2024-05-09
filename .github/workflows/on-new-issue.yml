@@ -25,6 +25,6 @@ jobs:
         pip install smartsheet-python-sdk
         pip install python-dotenv
 
-    # - name: Fetch Data and Write to File # runs script does the API call and writes to a file
-    #   run: |
-    #     python post-issue-smartsheet.py  
+    - name: Fetch Data and Write to File # runs script does the API call and writes to a file
+      run: |
+        python post-issue-smartsheet.py  
