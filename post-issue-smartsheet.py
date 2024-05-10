@@ -28,8 +28,6 @@ issues = response.json()
 # for use below--in order to truncate url to use as repo name
 repo_url = issues['repository_url']
 
-print(issues)
-
 # POST request to Smartsheet API
 smartsheet_response = requests.post(
     'https://api.smartsheet.com/2.0/sheets/2342839996338052/rows',
@@ -69,4 +67,4 @@ smartsheet_response = requests.post(
         ]
         })
 
-print('success?')
+print(JSON_ACCESS)
