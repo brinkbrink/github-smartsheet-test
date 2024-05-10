@@ -2,7 +2,7 @@ name: send-issue-smartsheet
 run-name: ${{ github.actor }} is testing this workflow
 on:
   issues:
-    types: [opened] # TODO: Create on: issues: [edited] to connect to Smartsheet PUT request to update issues when edited
+    types: [opened]
 
 env:
   SMART_ACCESS_TOKEN: ${{ secrets.SMARTSHEET_ACCESS_TOKEN }}
@@ -20,10 +20,10 @@ jobs:
           name: 'ISSUE_NUM'
           token: ${{ secrets.VAR_GH_TOKEN }}
 
-      - name: Checkout # checks out repository
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Python # sets up python for runner to prepare for script
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.10"
@@ -35,8 +35,10 @@ jobs:
           pip install smartsheet-python-sdk
           pip install python-dotenv
 
-      - name: Fetch Data and Write to Sheet # runs script that makes API call and writes to a Smartsheet
+      - name: Fetch Data and Write to Sheet
         env:
-          ISSUE_NUM: ${{ steps.increment_issue_num.outputs.ISSUE_NUM }}
+          SMART_ACCESS_TOKEN: ${{ secrets.SMARTSHEET_ACCESS_TOKEN }}
+          GH_ACCESS_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
+          ISSUE_NUM: ${{ steps.increment_issue_num.outputs.new_value }}
         run: |
           python post-issue-smartsheet.py
