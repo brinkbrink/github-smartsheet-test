@@ -21,7 +21,7 @@ logging.basicConfig(filename='rwsheet.log', level=logging.INFO)
 response = requests.get(
     f'https://api.github.com/repos/brinkbrink/github-smartsheet-test/issues/{ISSUE_NUM}',
     headers={
-        'Authorization': f'token {GITHUB_ACCESS_TOKEN}', 
+        'Authorization': GITHUB_ACCESS_TOKEN, 
         'Content-Type': 'application/vnd.github+json',
         'X-GitHub-Api-Version': '2022-11-28'
     }
