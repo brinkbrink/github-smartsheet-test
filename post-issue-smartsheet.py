@@ -66,5 +66,3 @@ smartsheet_response = requests.post(
             }
         ]
         })
-
-print(JSON_ACCESS)
