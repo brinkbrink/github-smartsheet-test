@@ -3,7 +3,8 @@ import smartsheet
 import logging
 import os
 
-# GH TOKEN IS DEF WORKING, WHAT IS GOING ON WITH SMARTSHEET?
+# smartsheet secret is the issue, 
+# works when hard-coded with token (revoked after testing)
 SMART_ACCESS_TOKEN = os.environ['SMART_ACCESS_TOKEN']
 os.environ['SMARTSHEET_ACCESS_TOKEN'] = SMART_ACCESS_TOKEN
 
