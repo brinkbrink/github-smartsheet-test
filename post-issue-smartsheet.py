@@ -20,12 +20,9 @@ logging.basicConfig(filename='rwsheet.log', level=logging.INFO)
 # GET request to GitHub API
 response = requests.get(
     f'https://api.github.com/repos/brinkbrink/github-smartsheet-test/issues/{ISSUE_NUM}',
-    headers={
-        'Authorization': GITHUB_ACCESS_TOKEN, 
-        'Content-Type': 'application/vnd.github+json',
-        'X-GitHub-Api-Version': '2022-11-28'
-    }
-)
+                        headers={'Authorization': GITHUB_ACCESS_TOKEN, 
+                                 'Content-Type': 'application/vnd.github+json',
+                                 'X-GitHub-Api-Version': '2022-11-28'})
 issues = response.json()
 
 # For use below--in order to truncate url to use as repo name
@@ -34,10 +31,7 @@ repo_url = issues['repository_url']
 # POST request to Smartsheet API
 smartsheet_response = requests.post(
     'https://api.smartsheet.com/2.0/sheets/2342839996338052/rows',
-    headers={
-        'Authorization': f'Bearer {SMART_ACCESS_TOKEN}', 
-        'Content-Type': 'application/json'
-    },
+    headers={'Authorization': f'Bearer {SMART_ACCESS_TOKEN}', 'Content-Type': 'application/json'},
     json={
         'sheetId': 2342839996338052,
         'accessLevel': 'OWNER',
@@ -46,30 +40,29 @@ smartsheet_response = requests.post(
         },
         'cells': [
             {
-                'columnId': 5558737690382212,
-                'displayValue': 'title',
-                'value': issues['title']
+            'columnId': 5558737690382212,
+            'displayValue': 'title',
+            'value': issues['title']
             },
             {
-                'columnId': 3306937876696964,
-                'displayValue': 'repo url',
-                'value': repo_url[40:]
+            'columnId': 3306937876696964,
+            'displayValue': 'repo url',
+            'value': repo_url[40:]
             },
             {
-                'columnId': 7810537504067460,
-                'displayValue': 'priority',
-                'value': 'priority pull from PBI'
+            'columnId': 7810537504067460,
+            'displayValue': 'priority',
+            'value': 'priority pull from PBI'
             },
             {
-                'columnId': 2181037969854340,
-                'displayValue': 'assignee',
-                'value': issues.get('assignee', {}).get('login', 'No Assignee')  # Safely access assignee
+            'columnId': 2181037969854340,
+            'displayValue': 'assignee',
+            'value': issues['assignee']['login'] # TODO: create logic in case this is empty
             },
             {
-                'columnId': 6684637597224836,
-                'displayValue': 'index',
-                'value': issues['number']
+            'columnId': 6684637597224836,
+            'displayValue': 'index',
+            'value': issues['number']
             }
         ]
-    }
-)
+        })
