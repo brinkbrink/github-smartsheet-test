@@ -4,8 +4,8 @@ import logging
 import os
 
 # GH TOKEN IS DEF WORKING, WHAT IS GOING ON WITH SMARTSHEET?
-#SMART_ACCESS_TOKEN = os.environ['SMART_ACCESS_TOKEN']
-#os.environ['SMARTSHEET_ACCESS_TOKEN'] = SMART_ACCESS_TOKEN
+SMART_ACCESS_TOKEN = os.environ['SMART_ACCESS_TOKEN']
+os.environ['SMARTSHEET_ACCESS_TOKEN'] = SMART_ACCESS_TOKEN
 
 JSON_ACCESS = os.environ['JSON_SMARTSHEET_ACCESS_TOKEN']
 GITHUB_ACCESS_TOKEN = os.environ['GH_ACCESS_TOKEN']
@@ -27,6 +27,8 @@ issues = response.json()
 
 # for use below--in order to truncate url to use as repo name
 repo_url = issues['repository_url']
+
+print(issues)
 
 # POST request to Smartsheet API
 smartsheet_response = requests.post(
@@ -66,3 +68,5 @@ smartsheet_response = requests.post(
             }
         ]
         })
+
+print('success?')
