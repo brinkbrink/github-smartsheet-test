@@ -7,13 +7,19 @@ on:
 env:
   SMART_ACCESS_TOKEN: ${{ secrets.SMARTSHEET_ACCESS_TOKEN }}
   GH_ACCESS_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
-  # TODO: variable for incrementing issue number
 
 jobs:
   fetch-and-store:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Increment
+        id: increment_issue_num
+        uses: action-pack/increment@v2
+        with:
+          name: 'ISSUE_NUM'
+          token: ${{ secrets.VAR_GH_TOKEN }}
+
       - name: Checkout # checks out repository
         uses: actions/checkout@v4
 
@@ -30,5 +36,7 @@ jobs:
           pip install python-dotenv
 
       - name: Fetch Data and Write to Sheet # runs script that makes API call and writes to a Smartsheet
+        env:
+          ISSUE_NUM: ${{ steps.increment_issue_num.outputs.ISSUE_NUM }}
         run: |
           python post-issue-smartsheet.py
