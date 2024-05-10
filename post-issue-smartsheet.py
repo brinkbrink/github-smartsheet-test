@@ -3,8 +3,6 @@ import smartsheet
 import logging
 import os
 
-# smartsheet secret is the issue, 
-# works when hard-coded with token (revoked after testing)
 SMART_ACCESS_TOKEN = os.environ['SMART_ACCESS_TOKEN']
 GITHUB_ACCESS_TOKEN = os.environ['GH_ACCESS_TOKEN']
 
