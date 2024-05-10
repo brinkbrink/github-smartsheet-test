@@ -21,7 +21,7 @@ response = requests.get('https://api.github.com/repos/brinkbrink/github-smartshe
                                  'X-GitHub-Api-Version': '2022-11-28'})
 issues = response.json()
 
-# for use below--in order to truncate url to use as repo name
+# For use below--in order to truncate url to use as repo name
 repo_url = issues['repository_url']
 
 # POST request to Smartsheet API
@@ -53,7 +53,7 @@ smartsheet_response = requests.post(
             {
             'columnId': 2181037969854340,
             'displayValue': 'assignee',
-            'value': issues['assignee']['login'] # create logic in case this is empty
+            'value': issues['assignee']['login'] # TODO: create logic in case this is empty
             },
             {
             'columnId': 6684637597224836,
@@ -62,5 +62,3 @@ smartsheet_response = requests.post(
             }
         ]
         })
-
-print(f'Smartsheet Response: {smartsheet_response.status_code} - {smartsheet_response.text}')
