@@ -6,13 +6,13 @@ import os
 # smartsheet secret is the issue, 
 # works when hard-coded with token (revoked after testing)
 SMART_ACCESS_TOKEN = os.environ['SMART_ACCESS_TOKEN']
-os.environ['SMARTSHEET_ACCESS_TOKEN'] = SMART_ACCESS_TOKEN
+#os.environ['SMARTSHEET_ACCESS_TOKEN'] = os.environ['SMART_ACCESS_TOKEN']
 
 JSON_ACCESS = os.environ['JSON_SMARTSHEET_ACCESS_TOKEN']
 GITHUB_ACCESS_TOKEN = os.environ['GH_ACCESS_TOKEN']
 
 # Initialize client. Uses the API token in the environment variable 'SMARTSHEET_ACCESS_TOKEN'
-smart = smartsheet.Smartsheet()
+smart = smartsheet.Smartsheet(SMART_ACCESS_TOKEN)
 # Make sure we don't miss any error
 smart.errors_as_exceptions(True)
 
@@ -67,3 +67,5 @@ smartsheet_response = requests.post(
             }
         ]
         })
+
+print(f'Smartsheet Response: {smartsheet_response.status_code} - {smartsheet_response.text}')
