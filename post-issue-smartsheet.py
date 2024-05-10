@@ -7,7 +7,11 @@ import os
 #SMART_ACCESS_TOKEN = os.environ['SMART_ACCESS_TOKEN']
 #os.environ['SMARTSHEET_ACCESS_TOKEN'] = SMART_ACCESS_TOKEN
 
-JSON_ACCESS = os.environ['JSON_SMARTSHEET_ACCESS_TOKEN']
+# The following token will automatically expire in <1 hour
+os.environ['SMARTSHEET_ACCESS_TOKEN'] = 'MMh2shnhm1FmKW27dMtzeNCvoi7bSF4pDN1pM'
+
+
+#JSON_ACCESS = os.environ['JSON_SMARTSHEET_ACCESS_TOKEN']
 GITHUB_ACCESS_TOKEN = os.environ['GH_ACCESS_TOKEN']
 
 # Initialize client. Uses the API token in the environment variable 'SMARTSHEET_ACCESS_TOKEN'
@@ -31,7 +35,7 @@ repo_url = issues['repository_url']
 # POST request to Smartsheet API
 smartsheet_response = requests.post(
     'https://api.smartsheet.com/2.0/sheets/2342839996338052/rows',
-    headers={'Authorization': JSON_ACCESS, 'Content-Type': 'application/json'},
+    headers={'Authorization': "Bearer MMh2shnhm1FmKW27dMtzeNCvoi7bSF4pDN1pM", 'Content-Type': 'application/json'},
     json={
         'sheetId': 2342839996338052,
         'accessLevel': 'OWNER',
