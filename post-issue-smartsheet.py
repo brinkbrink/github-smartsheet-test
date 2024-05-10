@@ -6,9 +6,6 @@ import os
 # smartsheet secret is the issue, 
 # works when hard-coded with token (revoked after testing)
 SMART_ACCESS_TOKEN = os.environ['SMART_ACCESS_TOKEN']
-#os.environ['SMARTSHEET_ACCESS_TOKEN'] = os.environ['SMART_ACCESS_TOKEN']
-
-JSON_ACCESS = os.environ['JSON_SMARTSHEET_ACCESS_TOKEN']
 GITHUB_ACCESS_TOKEN = os.environ['GH_ACCESS_TOKEN']
 
 # Initialize client. Uses the API token in the environment variable 'SMARTSHEET_ACCESS_TOKEN'
@@ -32,7 +29,7 @@ repo_url = issues['repository_url']
 # POST request to Smartsheet API
 smartsheet_response = requests.post(
     'https://api.smartsheet.com/2.0/sheets/2342839996338052/rows',
-    headers={'Authorization': JSON_ACCESS, 'Content-Type': 'application/json'},
+    headers={'Authorization': f'Bearer {SMART_ACCESS_TOKEN}', 'Content-Type': 'application/json'},
     json={
         'sheetId': 2342839996338052,
         'accessLevel': 'OWNER',
