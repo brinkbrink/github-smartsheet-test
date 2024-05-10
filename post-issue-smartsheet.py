@@ -27,6 +27,12 @@ issues = response.json()
 
 # For use below--in order to truncate url to use as repo name
 repo_url = issues['repository_url']
+# In case there is no assignee 
+if(issues['assignee']['login']):
+    assignee = issues['assignee']['login']
+else:
+    assignee = 'no assignee'
+
 
 # POST request to Smartsheet API
 smartsheet_response = requests.post(
@@ -57,7 +63,7 @@ smartsheet_response = requests.post(
             {
             'columnId': 2181037969854340,
             'displayValue': 'assignee',
-            'value': issues['assignee']['login'] # TODO: create logic in case this is empty
+            'value': assignee 
             },
             {
             'columnId': 6684637597224836,
