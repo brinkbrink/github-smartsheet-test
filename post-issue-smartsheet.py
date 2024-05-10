@@ -27,11 +27,6 @@ issues = response.json()
 
 # For use below--in order to truncate url to use as repo name
 repo_url = issues['repository_url']
-if(issues['assignee']['login']):
-    assignee = issues['assignee']['login']
-else:
-    assignee = 'no assignee'
-
 
 # POST request to Smartsheet API
 smartsheet_response = requests.post(
