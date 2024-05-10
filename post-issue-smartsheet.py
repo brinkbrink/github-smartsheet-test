@@ -5,10 +5,9 @@ import os
 
 SMART_ACCESS_TOKEN = os.environ['SMART_ACCESS_TOKEN']
 GITHUB_ACCESS_TOKEN = os.environ['GH_ACCESS_TOKEN']
-ISSUE_NUM = os.environ.get('ISSUE_NUM')
+ISSUE_NUM = os.environ('ISSUE_NUM') 
 
-if not ISSUE_NUM:
-    raise ValueError("ISSUE_NUM environment variable is not set or is empty.")
+print(ISSUE_NUM)
 
 # Initialize client. Uses the API token in the environment variable 'SMARTSHEET_ACCESS_TOKEN'
 smart = smartsheet.Smartsheet(SMART_ACCESS_TOKEN)
@@ -27,14 +26,10 @@ response = requests.get(
         'X-GitHub-Api-Version': '2022-11-28'
     }
 )
-
-if response.status_code != 200:
-    raise Exception(f"GitHub API request failed with status code {response.status_code}")
-
 issues = response.json()
 
-# Check if 'repository_url' is in the response
-repo_url = issues.get('repository_url', 'N/A')
+# For use below--in order to truncate url to use as repo name
+repo_url = issues['repository_url']
 
 # POST request to Smartsheet API
 smartsheet_response = requests.post(
@@ -53,12 +48,12 @@ smartsheet_response = requests.post(
             {
                 'columnId': 5558737690382212,
                 'displayValue': 'title',
-                'value': issues.get('title', 'No Title')
+                'value': issues['title']
             },
             {
                 'columnId': 3306937876696964,
                 'displayValue': 'repo url',
-                'value': repo_url[40:] if repo_url != 'N/A' else 'No Repo URL'
+                'value': repo_url[40:]
             },
             {
                 'columnId': 7810537504067460,
@@ -68,12 +63,12 @@ smartsheet_response = requests.post(
             {
                 'columnId': 2181037969854340,
                 'displayValue': 'assignee',
-                'value': issues.get('assignee', {}).get('login', 'No Assignee')
+                'value': issues.get('assignee', {}).get('login', 'No Assignee')  # Safely access assignee
             },
             {
                 'columnId': 6684637597224836,
                 'displayValue': 'index',
-                'value': issues.get('number', 'No Number')
+                'value': issues['number']
             }
         ]
     }
