@@ -41,7 +41,6 @@ except TypeError:
 
 title = issues['title']
 repo_url = issues['repository_url']
-assignee = issues['assignee']['login']
 index = issues['number']
 
 # POST request to Smartsheet API
