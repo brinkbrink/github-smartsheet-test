@@ -33,7 +33,7 @@ issues = response.json()
 assignee = 'assignee'
 try: 
     assignee = issues['assignee']['login']
-except NameError:
+except TypeError:
     assignee = 'Missing assignee'
 
 title = issues['title']
