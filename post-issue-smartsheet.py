@@ -24,6 +24,18 @@ response = requests.get(
 issues = response.json()
 
 # Creating variables for JSON inside of POST request being sent to Smartsheet
+# title = 'Title missing'
+# try: 
+#     title = issues['title']
+# except NameError:
+#     title = 'Title missing'
+
+assignee = 'assignee'
+try: 
+    assignee = issues['assignee']['login']
+except NameError:
+    assignee = 'Missing assignee'
+
 title = issues['title']
 repo_url = issues['repository_url']
 assignee = issues['assignee']['login']
