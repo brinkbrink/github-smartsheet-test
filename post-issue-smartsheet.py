@@ -23,13 +23,6 @@ response = requests.get(
                                  'X-GitHub-Api-Version': '2022-11-28'})
 issues = response.json()
 
-# Creating variables for JSON inside of POST request being sent to Smartsheet
-# title = 'Title missing'
-# try: 
-#     title = issues['title']
-# except NameError:
-#     title = 'Title missing'
-
 assignee = 'assignee'
 try: 
     if issues['assignee'] is not None:
@@ -38,7 +31,6 @@ try:
         assignee = 'Missing assignee'
 except TypeError:
     assignee = 'Missing assignee'
-
 title = issues['title']
 repo_url = issues['repository_url']
 index = issues['number']
