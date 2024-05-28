@@ -32,7 +32,10 @@ issues = response.json()
 
 assignee = 'assignee'
 try: 
-    assignee = issues['assignee']['login']
+    if issues['assignee'] is not None:
+        assignee = issues['assignee']['login']
+    else:
+        assignee = 'Missing assignee'
 except TypeError:
     assignee = 'Missing assignee'
 
