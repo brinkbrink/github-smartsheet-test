@@ -7,8 +7,6 @@ SMART_ACCESS_TOKEN = os.environ['SMART_ACCESS_TOKEN']
 GITHUB_ACCESS_TOKEN = os.environ['GH_ACCESS_TOKEN']
 ISSUE_NUM = os.environ['ISSUE_NUM'] 
 
-print(ISSUE_NUM)
-
 # Initialize client. Uses the API token in the environment variable 'SMARTSHEET_ACCESS_TOKEN'
 smart = smartsheet.Smartsheet(SMART_ACCESS_TOKEN)
 # Make sure we don't miss any error
@@ -25,8 +23,11 @@ response = requests.get(
                                  'X-GitHub-Api-Version': '2022-11-28'})
 issues = response.json()
 
-# For use below--in order to truncate url to use as repo name
+# Creating variables for JSON inside of POST request being sent to Smartsheet
+title = issues['title']
 repo_url = issues['repository_url']
+assignee = issues['assignee']['login']
+index = issues['number']
 
 # POST request to Smartsheet API
 smartsheet_response = requests.post(
@@ -42,7 +43,7 @@ smartsheet_response = requests.post(
             {
             'columnId': 5558737690382212,
             'displayValue': 'title',
-            'value': issues['title']
+            'value': title
             },
             {
             'columnId': 3306937876696964,
@@ -57,12 +58,12 @@ smartsheet_response = requests.post(
             {
             'columnId': 2181037969854340,
             'displayValue': 'assignee',
-            'value': issues['assignee']['login'] # TODO: create logic in case this is empty
+            'value': assignee
             },
             {
             'columnId': 6684637597224836,
             'displayValue': 'index',
-            'value': issues['number']
+            'value': index
             }
         ]
         })
