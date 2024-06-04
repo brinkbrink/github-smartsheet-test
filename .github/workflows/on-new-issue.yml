@@ -24,6 +24,12 @@ jobs:
       - name: Checkout # checks out repository
         uses: actions/checkout@v4
 
+      - name: Check object
+        run: |
+          cat << OBJECT
+          ${{ toJson(github) }}
+          OBJECT
+
       - name: Display GitHub context attributes
         run: |
           echo "Event: ${{ github.event }}"
