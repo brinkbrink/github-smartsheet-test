@@ -24,6 +24,19 @@ jobs:
       - name: Checkout # checks out repository
         uses: actions/checkout@v4
 
+      - name: Display GitHub context attributes
+        run: |
+          echo "Event: ${{ github.event }}"
+          echo "Actor: ${{ github.actor }}"
+          echo "Repository: ${{ github.repository }}"
+          echo "Event name: ${{ github.event_name }}"
+          echo "Commit SHA: ${{ github.sha }}"
+          echo "Ref: ${{ github.ref }}"
+          echo "Workflow: ${{ github.workflow }}"
+          echo "Run ID: ${{ github.run_id }}"
+          echo "Run Number: ${{ github.run_number }}"
+
+
       - name: Set up Python # sets up python for runner to prepare for script
         uses: actions/setup-python@v5
         with:
